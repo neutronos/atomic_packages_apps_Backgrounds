@@ -19,12 +19,12 @@ def generate_smallvariants(resource):
 
     for wallpaper in wallpapers:
         # Test if the wallpaper is a valid jpeg file
-        if imghdr.what(os.path.join(wallpapers_path, wallpaper)) != "jpeg":
+        if imghdr.what(os.path.join(wallpapers_path, wallpaper)) != "png":
             print(os.path.join(resource, wallpaper) + " is not a valid jpeg file")
             continue
 
         # Append _small.jpg to the wallpaper
-        wallpaper_small = os.path.splitext(wallpaper)[0] + "_small.jpg"
+        wallpaper_small = os.path.splitext(wallpaper)[0] + "_small.png"
         wallpaper_small_path = os.path.join(wallpapers_path, wallpaper_small)
 
         # Save the wallpaper with 1/4 size to wallpaper_small_path
@@ -32,7 +32,7 @@ def generate_smallvariants(resource):
             size = int(img.width / 4), int(img.height / 4)
 
             img_small = img.resize(size, Image.ANTIALIAS)
-            img_small.save(wallpaper_small_path, "JPEG")
+            img_small.save(wallpaper_small_path, "PNG")
 
 def clean(wallpapers_path):
     wallpapers = os.listdir(wallpapers_path)
